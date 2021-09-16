@@ -1,0 +1,27 @@
+version: '2'
+services:
+  alpine1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - alpine-vol:/test/
+    environment:
+      - TZ=Asia/Jakarta
+  alpine2:
+    image: alpine:latest
+    command: ["watch", "-n3", "cat", "/test/my_file"]
+    volumes:
+      - alpine-vol:/test/
+    environment:
+      - TZ=Asia/Jakarta
+  alpine3:
+    image: alpine:latest
+    command: ["watch", "-n3", "cat", "/test/my_file"]
+    volumes:
+      - alpine-vol:/test/
+    environment:
+      - TZ=Asia/Jakarta
+volumes:
+  alpine-vol:
+    driver: local
